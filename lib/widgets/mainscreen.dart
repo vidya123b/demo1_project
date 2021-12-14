@@ -22,7 +22,7 @@ class _MainScreenState extends State<MainScreen>
 
   @override
   void initState() {
-    _mainScreenNotifier = MainScreenNotifier(context);
+    _mainScreenNotifier = MainScreenNotifier();
     _mainScreenNotifier.init();
     super.initState();
   }
@@ -173,7 +173,7 @@ class _MainScreenState extends State<MainScreen>
         Container(
           child: Text(
             '${_mainScreenNotifier.counter}s',
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 15,
                 color: ThemeColor.black,
                 fontWeight: FontWeight.bold),
@@ -233,7 +233,6 @@ class _MainScreenState extends State<MainScreen>
               flag = true;
             }
           }),
-          print(flag),
           Navigator.of(context).push(MaterialPageRoute(
             builder: (BuildContext context) => ResultScreen(result: flag),
           )),

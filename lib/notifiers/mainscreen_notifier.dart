@@ -10,10 +10,9 @@ class MainScreenNotifier extends ChangeNotifier {
   late Timer _timer;
   QuestionDataViewModel? question;
   List<OptionDataViewModel>? options;
-  BuildContext? _context;
   MainScreenBloc mainScreenBloc = MainScreenBloc();
 
-  MainScreenNotifier(this._context);
+  MainScreenNotifier();
 
   init() {
     mainScreenBloc.getListOfQuestions();

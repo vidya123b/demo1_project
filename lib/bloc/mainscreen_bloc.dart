@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:demo_project/models/question_data_model.dart';
 import 'package:demo_project/service/api_services.dart';
-import 'package:flutter/cupertino.dart';
 
 class MainScreenBloc {
   API api = API();

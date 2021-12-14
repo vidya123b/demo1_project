@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class ResultScreen extends StatelessWidget {
   bool? result;
 
-  ResultScreen({this.result});
+  ResultScreen({Key? key, this.result}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,21 +13,21 @@ class ResultScreen extends StatelessWidget {
             backgroundColor: ThemeColor.whiteColor,
             body: Container(
               child: result!
-                  ? Icon(
+                  ? const Icon(
                       Icons.done,
                       size: 200,
                       color: ThemeColor.blue,
                     )
-                  : Icon(
+                  : const Icon(
                       Icons.close,
                       size: 200,
                       color: Colors.red,
                     ),
               alignment: Alignment.center,
-              margin: EdgeInsets.only(left: 20, right: 20),
-              decoration: new BoxDecoration(
+              margin: const EdgeInsets.only(left: 20, right: 20),
+              decoration: BoxDecoration(
                 color:
-                    result! ? ThemeColor.light_blue : ThemeColor.light_orange,
+                    result! ? ThemeColor.lightBlue : ThemeColor.lightOrange,
                 shape: BoxShape.circle,
               ),
             )));
