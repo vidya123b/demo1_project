@@ -5,7 +5,6 @@ import 'package:demo_project/widgets/resultscreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'dart:math' as math;
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -42,7 +41,7 @@ class _MainScreenState extends State<MainScreen>
                 ),
                 body: Column(
                   children: [
-                    Column(
+                   Expanded(child:  Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -50,24 +49,28 @@ class _MainScreenState extends State<MainScreen>
                             ? _questionWidget
                             : const SizedBox.shrink(),
                         _mainScreenNotifier.options != null
-                            ? Container(
-                                height: 450,
-                                margin: const EdgeInsets.only(top: 20),
-                                child: ListView.builder(
-                                  itemCount:
-                                      _mainScreenNotifier.options!.length,
-                                  itemBuilder: (context, i) {
-                                    _mainScreenNotifier.optionSelected
-                                        .putIfAbsent(
-                                            _mainScreenNotifier.options![i],
-                                            () => false);
-                                    return _optionWidget(
-                                        _mainScreenNotifier.options![i], i);
-                                  },
-                                ))
+                            ? Column(
+                              children: [
+                                Container(
+                                    margin: const EdgeInsets.only(top: 20),
+                                    child: ListView.builder(
+                                      shrinkWrap: true,
+                                      itemCount:
+                                          _mainScreenNotifier.options!.length,
+                                      itemBuilder: (context, i) {
+                                        _mainScreenNotifier.optionSelected
+                                            .putIfAbsent(
+                                                _mainScreenNotifier.options![i],
+                                                () => false);
+                                        return _optionWidget(
+                                            _mainScreenNotifier.options![i], i);
+                                      },
+                                    )),
+                              ],
+                            )
                             : const SizedBox.shrink()
                       ],
-                    ),
+                    )),
                     Visibility(
                       child: _submitButtonWidget,
                       visible: _mainScreenNotifier.question != null,
@@ -215,7 +218,7 @@ class _MainScreenState extends State<MainScreen>
     bool flag = false;
     return Container(
       alignment: Alignment.bottomRight,
-      margin: const EdgeInsets.only(right: 20, bottom: 0),
+      margin: const EdgeInsets.only(right: 20, bottom: 20),
       width: double.infinity,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
@@ -234,7 +237,7 @@ class _MainScreenState extends State<MainScreen>
             }
           }),
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (BuildContext context) => ResultScreen(result: flag),
+            builder: (BuildContext context) => ResultScreen(result: flag,options: _mainScreenNotifier.options,),
           )),
         },
         child: const Text(
@@ -272,7 +275,7 @@ class CustomTimerPainter extends CustomPainter {
     canvas.drawCircle(size.center(Offset.zero), size.width / 190.0, paint);
     paint.color = color;
 
-    double progress = (1.0 - animation.value) * 2 * math.pi;
+    //double progress = (1.0 - animation.value) * 2 * math.pi;
     canvas.drawLine(size.center(Offset.zero), size.center(Offset.zero), paint);
   }
 

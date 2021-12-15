@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 
 class MainScreenNotifier extends ChangeNotifier {
   int counter = 60, dataLoaded = 0;
-  Map<OptionDataViewModel, bool> optionSelected=Map();
+  Map<OptionDataViewModel, bool> optionSelected={};
   late Timer _timer;
   QuestionDataViewModel? question;
   List<OptionDataViewModel>? options;
