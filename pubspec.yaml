@@ -48,6 +48,7 @@ dev_dependencies:
   intl: any
   dio: ^4.0.4
   provider: ^5.0.0
+  percent_indicator: "^2.1.7+2"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
